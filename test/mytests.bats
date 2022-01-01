@@ -1,7 +1,8 @@
-# prepare
-function setup() {
-	load 'test_helper/bats-support/load'
-	load 'test_helper/bats-assert/load'
+load 'test_helper/bats-support/load'
+load 'test_helper/bats-assert/load'
+
+# runs only once
+function setup_file() {
 	echo huhu > bar
 }
 
@@ -9,6 +10,7 @@ function setup() {
 @test 'check for output' {
 	run ./foo.sh
 	assert_output 'huhu'
+	assert_success
 }
 
 @test 'check for partial output' {
@@ -22,6 +24,7 @@ function setup() {
 }
 
 # clean up
-function teardown() {
+# runs only once
+function teardown_file() {
 	rm -f bar
 }
