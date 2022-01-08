@@ -1,6 +1,3 @@
 #!/bin/bash
 
-set -ueo pipefail
-
-cat bar
-
+echo 'bar'

@@ -2,4 +2,4 @@
 
 set -ueo pipefail
 
-test/bats/bin/bats -T test/*.bats
+test/bats/bin/bats test/*.bats
