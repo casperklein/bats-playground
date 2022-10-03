@@ -19,8 +19,10 @@ function setup_file() {
 	VAR_setup_file=foo
 	export VAR_setup_file_export=foo
 
-	echo "$PURPLE    VAR_setup_file=$VAR_setup_file$RESET" >&3
-	echo "$BLUE    export VAR_setup_file_export=$VAR_setup_file_export$RESET" >&3
+	printf "$PURPLE    %-25s%s\n" "VAR_setup_file:" "$VAR_setup_file$RESET" >&3
+	printf "$BLUE    %-25s%s\n" "VAR_setup_file_export:" "$VAR_setup_file_export$RESET" >&3
+	printf "$YELLOW    %-25s%s\n" "VAR_setup:" "$VAR_setup$RESET" >&3
+	printf "$CYAN    %-25s%s\n" "VAR_setup_export:" "$VAR_setup_export$RESET" >&3
 	echo >&3
 }
 
@@ -33,6 +35,9 @@ function setup() {
 
 	printf "$PURPLE    %-25s%s\n" "VAR_setup_file:" "$VAR_setup_file$RESET" >&3
 	printf "$BLUE    %-25s%s\n" "VAR_setup_file_export:" "$VAR_setup_file_export$RESET" >&3
+	printf "$YELLOW    %-25s%s\n" "VAR_setup:" "$VAR_setup$RESET" >&3
+	printf "$CYAN    %-25s%s\n" "VAR_setup_export:" "$VAR_setup_export$RESET" >&3
+	echo >&3
 }
 
 # run tests
@@ -47,18 +52,25 @@ function setup() {
 	printf "$BLUE    %-25s%s\n" "VAR_setup_file_export:" "$VAR_setup_file_export$RESET" >&3
 	printf "$YELLOW    %-25s%s\n" "VAR_setup:" "$VAR_setup$RESET" >&3
 	printf "$CYAN    %-25s%s\n" "VAR_setup_export:" "$VAR_setup_export$RESET" >&3
+	echo >&3
 }
 
-@test 'second test' {
-	echo "second test" >&3
-	run echo 'hello world'
-	assert_output --partial 'world'
-}
+# @test 'second test' {
+# 	echo "second test" >&3
+# 	run echo 'hello world'
+# 	assert_output --partial 'world'
 
-# @test 'check for exit code' {
-# 	run exit 55
-# 	assert_failure 55
+# 	printf "$PURPLE    %-25s%s\n" "VAR_setup_file:" "$VAR_setup_file$RESET" >&3
+# 	printf "$BLUE    %-25s%s\n" "VAR_setup_file_export:" "$VAR_setup_file_export$RESET" >&3
+# 	printf "$YELLOW    %-25s%s\n" "VAR_setup:" "$VAR_setup$RESET" >&3
+# 	printf "$CYAN    %-25s%s\n" "VAR_setup_export:" "$VAR_setup_export$RESET" >&3
+# 	echo >&3
 # }
+
+@test 'check for exit code' {
+	run exit 55
+	assert_failure 55
+}
 
 # runs after each test
 function teardown() {
@@ -77,4 +89,5 @@ function teardown_file() {
 	printf "$BLUE    %-25s%s\n" "VAR_setup_file_export:" "$VAR_setup_file_export$RESET" >&3
 	printf "$YELLOW    %-25s%s\n" "VAR_setup:" "$VAR_setup$RESET" >&3
 	printf "$CYAN    %-25s%s\n" "VAR_setup_export:" "$VAR_setup_export$RESET" >&3
+	echo >&3
 }
