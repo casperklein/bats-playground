@@ -1,3 +1,3 @@
 #!/bin/bash
 
-test/bats/bin/bats test/*.bats
+test/bats/bin/bats --timing test/*.bats

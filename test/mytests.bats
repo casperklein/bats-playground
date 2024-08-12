@@ -11,7 +11,7 @@ CYAN=$(tput setaf 6)
 RESET=$(tput sgr0)
 
 # runs before all tests and before each test
-echo "$BOLD$RED** Code not wrapped in functions **$RESET" >&3
+echo "$BOLD$RED** Code not wrapped in functions **$RESET" #>&3
 
 # runs before all tests
 function setup_file() {
